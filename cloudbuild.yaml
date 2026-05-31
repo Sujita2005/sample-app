@@ -1,9 +1,11 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/my-repository/hello-cloudbuild:v1.0', '.']
+  args: ['build', '-t', 'us-east4-docker.pkg.dev/$PROJECT_ID/my-repository/hello-cloudbuild:v1.0', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/my-repository/hello-cloudbuild:v1.0']
+  args: ['push', 'us-east4-docker.pkg.dev/$PROJECT_ID/my-repository/hello-cloudbuild:v1.0']
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['container', 'clusters', 'get-credentials', 'hello-cluster', '--zone', 'us-east4-c']
 - name: 'gcr.io/cloud-builders/kubectl'
-  args: ['set', 'image', 'deployment/production-deployment', 'hello-container=us-central1-docker.pkg.dev/$PROJECT_ID/my-repository/hello-cloudbuild:v1.0', '-n', 'prod']
+  args: ['set', 'image', 'deployment/production-deployment', 'hello-container=us-east4-docker.pkg.dev/$PROJECT_ID/my-repository/hello-cloudbuild:v1.0', '-n', 'prod']
