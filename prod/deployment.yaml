@@ -2,8 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: production-deployment
+  labels:
+    app: hello
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: hello
@@ -15,3 +17,5 @@ spec:
       containers:
       - name: hello-container
         image: us-east4-docker.pkg.dev/qwiklabs-gcp-00-a7e69565b8a6/my-repository/hello-cloudbuild:v1.0
+        ports:
+        - containerPort: 8080
