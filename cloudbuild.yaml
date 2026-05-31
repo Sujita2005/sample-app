@@ -1,7 +1,5 @@
 steps:
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['container', 'clusters', 'get-credentials', 'hello-cluster', '--zone', 'us-east4-c']
-- name: 'gcr.io/cloud-builders/kubectl'
-  args: ['set', 'image', 'deployment/production-deployment', 'hello-container=us-east4-docker.pkg.dev/qwiklabs-gcp-00-a7e69565b8a6/my-repository/hello-cloudbuild:v1.0', '-n', 'prod']
+  args: ['version']
 options:
   logging: CLOUD_LOGGING_ONLY
